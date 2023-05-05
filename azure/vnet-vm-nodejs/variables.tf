@@ -6,18 +6,29 @@ variable "project" {}
 # NodeJS App
 variable "git_app_url" {
   description = "Public git URL of the web application to build and deploy"
-  default = "https://github.com/Yog9/SnapShot.git"
+  default = ""
 }
 
 # Infra
 variable "vm_instance_type" {
   description = "Instance type to deploy."
-  default     = "t3a.small"
+  default     = "Standard_DS2_v2"
 }
 
 variable "vm_disk_size" {
   description = "Disk size for the instance (Go)"
-  default = "20"
+  default = "30"
+}
+
+variable "rg_name" {
+  type        = string
+  description = "The name of the existing resource group where the resources will be deployed."
+  default     = ""
+}
+
+variable "azure_location" {
+  description = "Azure location"
+  default = "West Europe"
 }
 
 # Tags

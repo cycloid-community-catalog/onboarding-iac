@@ -6,13 +6,13 @@ variable "project" {}
 # NodeJS App
 variable "git_app_url" {
   description = "Public git URL of the web application to build and deploy"
-  default = "https://github.com/Yog9/SnapShot.git"
+  default = ""
 }
 
 # Infra
-variable "vm_instance_type" {
-  description = "Instance type to deploy."
-  default     = "t3a.small"
+variable "vm_machine_type" {
+  description = "Machine type for the Nexus Repository"
+  default     = "n2-standard-2"
 }
 
 variable "vm_disk_size" {

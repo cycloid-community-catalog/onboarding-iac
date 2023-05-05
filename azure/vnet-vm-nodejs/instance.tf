@@ -6,6 +6,7 @@ resource "azurerm_linux_virtual_machine" "webapp" {
   location              = var.azure_location
   network_interface_ids = [azurerm_network_interface.webapp.id]
   size                  = var.vm_instance_type
+  admin_username        = "cycloid"
 
   os_disk {
     caching              = "ReadWrite"

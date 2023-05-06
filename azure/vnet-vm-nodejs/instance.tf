@@ -7,6 +7,9 @@ resource "azurerm_linux_virtual_machine" "webapp" {
   network_interface_ids = [azurerm_network_interface.webapp.id]
   size                  = var.vm_instance_type
   admin_username        = "cycloid"
+  admin_password        = "Ch4ng3M3!"
+  
+  disable_password_authentication = false
 
   os_disk {
     caching              = "ReadWrite"
@@ -20,8 +23,6 @@ resource "azurerm_linux_virtual_machine" "webapp" {
       sku       = "11"
       version   = "latest"
   }
-
-  disable_password_authentication = true
 
   custom_data = base64encode(templatefile(
     "${path.module}/userdata.sh.tpl",

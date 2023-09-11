@@ -1,5 +1,5 @@
 resource "aws_security_group" "bastion" {
-  count = var.create_instance ? 1 : 0
+  count = var.create_bastion ? 1 : 0
 
   name        = "${var.customer}-${var.project}-${var.env}-bastion"
   description = "Allow accessing the bastion via SSH from the internet."
@@ -11,7 +11,7 @@ resource "aws_security_group" "bastion" {
 }
 
 resource "aws_security_group_rule" "egress-all" {
-  count = var.create_instance ? 1 : 0
+  count = var.create_bastion ? 1 : 0
 
   type              = "egress"
   from_port         = 0
@@ -22,7 +22,7 @@ resource "aws_security_group_rule" "egress-all" {
 }
 
 resource "aws_security_group_rule" "ingress-ssh" {
-  count = var.create_instance ? 1 : 0
+  count = var.create_bastion ? 1 : 0
 
   type              = "ingress"
   from_port         = 22
@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "ingress-ssh" {
 }
 
 resource "aws_instance" "bastion" {
-  count = var.create_instance ? 1 : 0
+  count = var.create_bastion ? 1 : 0
 
   ami = data.aws_ami.debian.id
   instance_type = var.bastion_instance_type

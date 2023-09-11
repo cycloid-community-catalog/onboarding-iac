@@ -26,5 +26,5 @@ output "vpc_private_subnet" {
 #
 output "bastion_ip" {
   description = "The EIP attached to the bastion EC2 server"
-  value       = var.create_instance ? aws_instance.bastion[0].public_ip : "Bastion not deployed"
+  value       = var.create_bastion ? aws_instance.bastion[0].public_ip : "Bastion not deployed"
 }

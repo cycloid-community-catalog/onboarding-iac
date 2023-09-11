@@ -3,7 +3,7 @@ resource "aws_security_group" "bastion" {
 
   name        = "${var.customer}-${var.project}-${var.env}-bastion"
   description = "Allow accessing the bastion via SSH from the internet."
-  vpc_id      = data.aws_subnet.selected.vpc_id
+  vpc_id      = aws_vpc.id
 
   tags = merge(local.merged_tags, {
     Name       = "${var.customer}-${var.project}-${var.env}-bastion"
@@ -41,7 +41,7 @@ resource "aws_instance" "bastion" {
 
   vpc_security_group_ids = [aws_security_group.bastion[0].id]
 
-  subnet_id = aws_subnet.infra.id
+  subnet_id = aws_subnet.public.id
   disable_api_termination = false
   associate_public_ip_address = true
 

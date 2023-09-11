@@ -18,7 +18,7 @@ resource "aws_security_group_rule" "egress-all" {
   to_port           = 0
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.bastion.id
+  security_group_id = aws_security_group.bastion[0].id
 }
 
 resource "aws_security_group_rule" "ingress-ssh" {
@@ -29,7 +29,7 @@ resource "aws_security_group_rule" "ingress-ssh" {
   to_port           = 22
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.bastion.id
+  security_group_id = aws_security_group.bastion[0].id
 }
 
 resource "aws_instance" "bastion" {

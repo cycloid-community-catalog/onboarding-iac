@@ -3,7 +3,7 @@ resource "aws_security_group" "bastion" {
 
   name        = "${var.customer}-${var.project}-${var.env}-bastion"
   description = "Allow accessing the bastion via SSH from the internet."
-  vpc_id      = aws_vpc.id
+  vpc_id      = aws_vpc.infra.id
 
   tags = merge(local.merged_tags, {
     Name       = "${var.customer}-${var.project}-${var.env}-bastion"

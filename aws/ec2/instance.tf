@@ -38,7 +38,7 @@ resource "aws_security_group_rule" "ingress-http" {
 resource "aws_instance" "webapp" {
   ami           = data.aws_ami.debian.id
   instance_type = var.vm_instance_type
-  key_name      = aws_key_pair.webapp.key_name ? aws_key_pair.webapp.key_name : ""
+  key_name      = var.keypair_public ? aws_key_pair.webapp.key_name : null
 
   vpc_security_group_ids = [aws_security_group.webapp.id]
 

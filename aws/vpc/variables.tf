@@ -32,7 +32,7 @@ variable "vpc_private_subnet" {
 #
 # Bastion
 #
-variable "bastion_instance" {
+variable "create_instance" {
   description = "Whether to deploy a bastion instance or not"
   default     = false
 }

@@ -6,7 +6,13 @@ variable "project" {}
 # NodeJS App
 variable "git_app_url" {
   description = "Public git URL of the web application to build and deploy"
-  default = ""
+  default = "https://github.com/ahfarmer/calculator.git"
+}
+
+# Network
+variable "subnet_id" {
+  description = "Subnet ID where to deploy the EC2 instance."
+  default     = ""
 }
 
 # Infra

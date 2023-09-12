@@ -9,28 +9,28 @@ module "s3_bucket" {
   })
 
   # Bucket policies
-  attach_policy                            = true
-  policy                                   = data.aws_iam_policy_document.bucket_policy.json
-  attach_deny_insecure_transport_policy    = true
-  attach_require_latest_tls_policy         = true
-  attach_deny_incorrect_encryption_headers = true
-  attach_deny_incorrect_kms_key_sse        = true
-  allowed_kms_key_arn                      = aws_kms_key.objects.arn
-  attach_deny_unencrypted_object_uploads   = true
+  # attach_policy                            = true
+  # policy                                   = data.aws_iam_policy_document.bucket_policy.json
+  # attach_deny_insecure_transport_policy    = true
+  # attach_require_latest_tls_policy         = true
+  # attach_deny_incorrect_encryption_headers = true
+  # attach_deny_incorrect_kms_key_sse        = true
+  # allowed_kms_key_arn                      = aws_kms_key.objects.arn
+  # attach_deny_unencrypted_object_uploads   = true
 
   # S3 Bucket Ownership Controls
   # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_ownership_controls
-  control_object_ownership = true
-  object_ownership         = "BucketOwnerPreferred"
+  # control_object_ownership = true
+  # object_ownership         = "BucketOwnerPreferred"
 
-  acl = "private"
+  # acl = "private"
 
-  server_side_encryption_configuration = {
-    rule = {
-      apply_server_side_encryption_by_default = {
-        kms_master_key_id = aws_kms_key.objects.arn
-        sse_algorithm     = "aws:kms"
-      }
-    }
-  }
+  # server_side_encryption_configuration = {
+  #   rule = {
+  #     apply_server_side_encryption_by_default = {
+  #       kms_master_key_id = aws_kms_key.objects.arn
+  #       sse_algorithm     = "aws:kms"
+  #     }
+  #   }
+  # }
 }

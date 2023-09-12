@@ -32,8 +32,13 @@ variable "vm_os_user" {
 }
 
 variable "keypair_public" {
-  description = "Public key to provision to the instance"
+  description = "Public key to provision to the instance."
   default = ""
+}
+
+variable "associate_public_ip_address" {
+  description = "Whether to associate a public IP on the primary interface or not."
+  default = true
 }
 
 # Tags

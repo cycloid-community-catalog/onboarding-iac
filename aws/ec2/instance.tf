@@ -43,8 +43,8 @@ resource "aws_instance" "webapp" {
   vpc_security_group_ids = [aws_security_group.webapp.id]
 
   subnet_id               = var.subnet_id
-  # disable_api_termination = false
-  # associate_public_ip_address = true
+  disable_api_termination = false
+  associate_public_ip_address = var.associate_public_ip_address
 
   root_block_device {
     volume_size           = var.vm_disk_size

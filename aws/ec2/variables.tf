@@ -3,12 +3,6 @@ variable "customer" {}
 variable "env" {}
 variable "project" {}
 
-# NodeJS App
-variable "git_app_url" {
-  description = "Public git URL of the web application to build and deploy"
-  default = "https://github.com/ahfarmer/calculator.git"
-}
-
 # Network
 variable "subnet_id" {
   description = "Subnet ID where to deploy the EC2 instance."
@@ -39,6 +33,12 @@ variable "keypair_public" {
 variable "associate_public_ip_address" {
   description = "Whether to associate a public IP on the primary interface or not."
   default = true
+}
+
+# Network
+variable "subnet_id" {
+  description = "Public subnet ID where to deploy the EC2 instance."
+  default     = ""
 }
 
 # Tags

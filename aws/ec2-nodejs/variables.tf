@@ -20,6 +20,17 @@ variable "vm_disk_size" {
   default = "20"
 }
 
+variable "associate_public_ip_address" {
+  description = "Whether to associate a public IP on the primary interface or not."
+  default = true
+}
+
+# Network
+variable "subnet_id" {
+  description = "Public subnet ID where to deploy the EC2 instance."
+  default     = ""
+}
+
 # Tags
 variable "extra_tags" {
   default = {}

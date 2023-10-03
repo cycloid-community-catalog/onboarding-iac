@@ -1,7 +1,7 @@
 resource "aws_security_group" "webapp" {
   name        = "${var.customer}-${var.project}-${var.env}-webapp"
   description = "Allow accessing the instance from the internet."
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = data.aws_subnet.selected.vpc_id
 
   tags = merge(local.merged_tags, {
     Name       = "${var.customer}-${var.project}-${var.env}-webapp"
@@ -41,9 +41,9 @@ resource "aws_instance" "webapp" {
 
   vpc_security_group_ids = [aws_security_group.webapp.id]
 
-  subnet_id               = module.vpc.public_subnets[0]
+  subnet_id               = var.subnet_id
   disable_api_termination = false
-  associate_public_ip_address = true
+  associate_public_ip_address = var.associate_public_ip_address
 
   root_block_device {
     volume_size           = var.vm_disk_size

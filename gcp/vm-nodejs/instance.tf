@@ -2,7 +2,6 @@ resource "google_compute_instance" "webapp" {
   name           = "${var.customer}-${var.project}-${var.env}-webapp"
   machine_type   = var.vm_machine_type
   can_ip_forward = false
-  zone           = var.gcp_zone
 
   boot_disk {
     initialize_params {

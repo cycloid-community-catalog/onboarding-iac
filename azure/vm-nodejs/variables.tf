@@ -10,14 +10,30 @@ variable "git_app_url" {
 }
 
 # Infra
-variable "vm_machine_type" {
-  description = "Machine type for the Nexus Repository"
-  default     = "n2-standard-2"
+variable "vm_instance_type" {
+  description = "Instance type to deploy."
+  default     = "Standard_DS2_v2"
 }
 
 variable "vm_disk_size" {
   description = "Disk size for the instance (Go)"
-  default = "20"
+  default = "30"
+}
+
+variable "rg_name" {
+  type        = string
+  description = "The name of the existing resource group where the resources will be deployed."
+  default     = ""
+}
+
+variable "azure_location" {
+  description = "Azure location"
+  default = "West Europe"
+}
+
+variable "subnet_id" {
+  description = "Subnet ID where to deploy the instance."
+  default     = ""
 }
 
 # Tags

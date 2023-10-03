@@ -27,7 +27,7 @@ variable "associate_public_ip_address" {
 
 # Network
 variable "subnet_id" {
-  description = "Public subnet ID where to deploy the EC2 instance."
+  description = "Subnet ID where to deploy the EC2 instance."
   default     = ""
 }
 

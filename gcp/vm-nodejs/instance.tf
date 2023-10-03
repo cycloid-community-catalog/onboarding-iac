@@ -1,24 +1,8 @@
-resource "google_compute_firewall" "webapp" {
-  name    = "${var.customer}-${var.project}-${var.env}-webapp"
-  network = google_compute_network.webapp.name
-
-  allow {
-    protocol = "tcp"
-    ports    = ["22", "80"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]
-}
-
-data "google_compute_zones" "available" {
-  status = "UP"
-}
-
 resource "google_compute_instance" "webapp" {
   name           = "${var.customer}-${var.project}-${var.env}-webapp"
   machine_type   = var.vm_machine_type
   can_ip_forward = false
-  zone           = data.google_compute_zones.available.names[length(data.google_compute_zones.available.names)-1]
+  zone           = var.gcp_zone
 
   boot_disk {
     initialize_params {
@@ -33,7 +17,7 @@ resource "google_compute_instance" "webapp" {
   }
 
   network_interface {
-    subnetwork = google_compute_subnetwork.webapp.name
+    network = var.network_name
 
     access_config {
       // Ephemeral public IP

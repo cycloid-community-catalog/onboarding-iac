@@ -1,4 +1,4 @@
-# Create Network Security Group
+# Create Network Security Group and Rules
 resource "azurerm_network_security_group" "webapp" {
   name                = "${var.customer}-${var.project}-${var.env}-webapp"
   resource_group_name = data.azurerm_resource_group.webapp.name
@@ -33,7 +33,7 @@ resource "azurerm_network_security_group" "webapp" {
   })
 }
 
-# Get a Static Public IP
+# Get a Public IP
 resource "azurerm_public_ip" "webapp" {
   name                = "${var.customer}-${var.project}-${var.env}-webapp"
   resource_group_name = data.azurerm_resource_group.webapp.name
@@ -53,7 +53,7 @@ resource "azurerm_network_interface" "webapp" {
 
   ip_configuration {
       name                          = "${var.customer}-${var.project}-${var.env}-webapp"
-      subnet_id                     = azurerm_subnet.webapp.id
+      subnet_id                     = var.subnet_id
       private_ip_address_allocation = "Dynamic"
       public_ip_address_id          = azurerm_public_ip.webapp.id
   }
@@ -67,23 +67,4 @@ resource "azurerm_network_interface" "webapp" {
 resource "azurerm_network_interface_security_group_association" "webapp" {
     network_interface_id      = azurerm_network_interface.webapp.id
     network_security_group_id = azurerm_network_security_group.webapp.id
-}
-
-resource "azurerm_virtual_network" "webapp" {
-  name                = "${var.customer}-${var.project}-${var.env}-webapp"
-  resource_group_name = data.azurerm_resource_group.webapp.name
-  location            = var.azure_location
-  address_space       = ["10.222.0.0/16"]
-
-  tags = merge(local.merged_tags, {
-    Name = "${var.customer}-${var.project}-${var.env}-webapp"
-  })
-}
-
-resource "azurerm_subnet" "webapp" {
-  name                 = "${var.customer}-${var.project}-${var.env}-webapp"
-  virtual_network_name = azurerm_virtual_network.webapp.name
-  resource_group_name  = data.azurerm_resource_group.webapp.name
-
-  address_prefixes     = ["10.222.1.0/24"]
 }

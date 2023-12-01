@@ -109,5 +109,5 @@ resource "aws_route_table" "private_route_table" {
 # Associate private route table with the private subnet to make NAT gateway reachable
 resource "aws_route_table_association" "private_route_table_association" {
   subnet_id      = aws_subnet.private_subnet.id
-  route_table_id = aws_route_table.pprivate_route_table.id
+  route_table_id = aws_route_table.private_route_table.id
 }

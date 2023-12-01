@@ -15,7 +15,7 @@ resource "aws_security_group_rule" "egress-all" {
   to_port           = 0
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.ec2.id
+  security_group_id = aws_security_group.ec2_security_group.id
 }
 
 resource "aws_security_group_rule" "ingress-ssh" {
@@ -24,7 +24,7 @@ resource "aws_security_group_rule" "ingress-ssh" {
   to_port           = 22
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.ec2.id
+  security_group_id = aws_security_group.ec2_security_group.id
 }
 
 resource "aws_security_group_rule" "ingress-http" {
@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "ingress-http" {
   to_port           = 80
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.ec2.id
+  security_group_id = aws_security_group.ec2_security_group.id
 }
 
 resource "aws_security_group_rule" "ingress-https" {
@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "ingress-https" {
   to_port           = 443
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.ec2.id
+  security_group_id = aws_security_group.ec2_security_group.id
 }
 
 resource "aws_instance" "ec2" {
@@ -50,7 +50,7 @@ resource "aws_instance" "ec2" {
   instance_type = var.vm_instance_type
   key_name      = data.aws_key_pair.keypair.key_name
 
-  vpc_security_group_ids = [aws_security_group.ec2.id]
+  vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
 
   subnet_id               = var.subnet_id
   disable_api_termination = false

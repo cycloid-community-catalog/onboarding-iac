@@ -1,10 +1,11 @@
-resource "aws_security_group" "ec2" {
-  name        = "${var.customer}-${var.project}-${var.env}-ec2"
+resource "aws_security_group" "ec2_security_group" {
+  name        = "${var.customer}-${var.project}-${var.env}"
   description = "Allow accessing the instance from the internet."
   vpc_id      = data.aws_subnet.selected.vpc_id
 
   tags = merge(local.merged_tags, {
-    Name       = "${var.customer}-${var.project}-${var.env}-ec2"
+    Name = "${var.customer}-${var.project}-${var.env}"
+    role = "security_group"
   })
 }
 
@@ -47,7 +48,7 @@ resource "aws_security_group_rule" "ingress-https" {
 resource "aws_instance" "ec2" {
   ami           = data.aws_ami.debian.id
   instance_type = var.vm_instance_type
-  key_name      = aws_key_pair.ec2.key_name
+  key_name      = data.aws_key_pair.keypair.key_name
 
   vpc_security_group_ids = [aws_security_group.ec2.id]
 

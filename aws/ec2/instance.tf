@@ -35,6 +35,15 @@ resource "aws_security_group_rule" "ingress-http" {
   security_group_id = aws_security_group.ec2.id
 }
 
+resource "aws_security_group_rule" "ingress-https" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ec2.id
+}
+
 resource "aws_instance" "ec2" {
   ami           = data.aws_ami.debian.id
   instance_type = var.vm_instance_type
@@ -52,7 +61,7 @@ resource "aws_instance" "ec2" {
   }
 
   tags = merge(local.merged_tags, {
-    Name = "${var.customer}-${var.project}-${var.env}-ec2"
+    Name = "${var.customer}-${var.project}-${var.env}"
     role = "ec2"
   })
 

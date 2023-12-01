@@ -3,16 +3,10 @@ variable "customer" {}
 variable "env" {}
 variable "project" {}
 
-# Network
-variable "subnet_id" {
-  description = "Subnet ID where to deploy the EC2 instance."
-  default     = ""
-}
-
 # Infra
 variable "vm_instance_type" {
   description = "Instance type to deploy."
-  default     = "t3a.small"
+  default     = "t2.micro"
 }
 
 variable "vm_disk_size" {
@@ -25,9 +19,9 @@ variable "vm_os_user" {
   default     = "admin"
 }
 
-variable "keypair_public" {
-  description = "Public key to provision to the instance."
-  default = ""
+variable "keypair_name" {
+  description = "The name of the key pair to provision to the instance."
+  default = "${var.customer}-${var.project}-${var.env}"
 }
 
 variable "associate_public_ip_address" {

@@ -70,7 +70,7 @@ resource "aws_route_table_association" "public_route_table_association" {
 
 # Allocate an IP address for our NAT gateway
 resource "aws_eip" "nat_gateway" {
-  vpc = true
+  domain   = "vpc"
 
   tags = merge(local.merged_tags, {
     Name = "${var.customer}-${var.project}-${var.env}"

@@ -21,7 +21,7 @@ variable "vm_os_user" {
 
 variable "keypair_name" {
   description = "The name of the key pair to provision to the instance."
-  default = "${var.customer}-${var.project}-${var.env}"
+  default = ""
 }
 
 variable "associate_public_ip_address" {

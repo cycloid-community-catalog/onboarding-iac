@@ -5,7 +5,7 @@ variable "project" {}
 
 variable "keypair_name" {
   description = "Public key to provision to the instance."
-  default = "${var.customer}-${var.project}-${var.env}"
+  default = ""
 }
 
 variable "keypair_public" {

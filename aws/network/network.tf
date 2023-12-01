@@ -87,8 +87,6 @@ resource "aws_nat_gateway" "nat_gateway" {
     Name = "${var.customer}-${var.project}-${var.env}"
     role = "nat_gateway"
   })
-  
-  depends_on = ["aws_internet_gateway.internet_gateway"]
 }
 
 # Route table which uses our NAT gateway to access the internet

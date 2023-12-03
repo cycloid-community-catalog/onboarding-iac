@@ -3,12 +3,12 @@ variable "customer" {}
 variable "env" {}
 variable "project" {}
 
-variable "keypair_name" {
+variable "key_pair_name" {
   description = "Public key to provision to the instance."
   default = ""
 }
 
-variable "keypair_public" {
+variable "key_pair_public" {
   description = "Public key to create."
   default = ""
 }

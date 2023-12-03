@@ -10,5 +10,5 @@ output "id" {
 
 output "name" {
   description = "The name of the key pair"
-  value       = var.keypair_name
+  value       = var.key_pair_name
 }

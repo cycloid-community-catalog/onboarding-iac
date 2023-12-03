@@ -19,7 +19,7 @@ variable "vm_os_user" {
   default     = "admin"
 }
 
-variable "keypair_name" {
+variable "key_pair_name" {
   description = "The name of the key pair to provision to the instance."
   default = ""
 }

@@ -48,7 +48,7 @@ resource "aws_security_group_rule" "ingress-https" {
 resource "aws_instance" "ec2" {
   ami           = data.aws_ami.debian.id
   instance_type = var.vm_instance_type
-  key_name      = data.aws_key_pair.keypair.key_name
+  key_name      = var.key_pair_name
 
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
 

@@ -3,46 +3,27 @@ resource "aws_security_group" "ec2_security_group" {
   description = "Allow accessing the instance from the internet."
   vpc_id      = data.aws_subnet.selected.vpc_id
 
+  dynamic "ingress" {
+    for_each = var.service_ports
+    content {
+      from_port = ingress.value
+      to_port   = ingress.value
+      protocol  = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
   tags = merge(local.merged_tags, {
     Name = "${var.customer}-${var.project}-${var.env}"
     role = "security_group"
   })
-}
-
-resource "aws_security_group_rule" "egress-all" {
-  type              = "egress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.ec2_security_group.id
-}
-
-resource "aws_security_group_rule" "ingress-ssh" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.ec2_security_group.id
-}
-
-resource "aws_security_group_rule" "ingress-http" {
-  type              = "ingress"
-  from_port         = 80
-  to_port           = 80
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.ec2_security_group.id
-}
-
-resource "aws_security_group_rule" "ingress-https" {
-  type              = "ingress"
-  from_port         = 443
-  to_port           = 443
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.ec2_security_group.id
 }
 
 resource "aws_instance" "ec2" {

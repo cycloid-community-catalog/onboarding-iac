@@ -29,6 +29,11 @@ variable "associate_public_ip_address" {
   default = true
 }
 
+variable "service_ports" {
+  description = "Array of TCP ports to be allowed as ingress."
+  default = []
+}
+
 # Network
 variable "subnet_id" {
   description = "Subnet ID where to deploy the EC2 instance."

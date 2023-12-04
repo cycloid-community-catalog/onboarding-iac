@@ -4,11 +4,6 @@ variable "env" {}
 variable "project" {}
 
 # Infra
-variable "create" {
-  description = "Whether to deploy the instance or not."
-  default     = false
-}
-
 variable "vm_instance_type" {
   description = "Instance type to deploy."
   default     = "t2.micro"

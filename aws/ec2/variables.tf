@@ -6,7 +6,7 @@ variable "project" {}
 # Infra
 variable "create" {
   description = "Whether to deploy the instance or not."
-  default     = true
+  default     = false
 }
 
 variable "vm_instance_type" {

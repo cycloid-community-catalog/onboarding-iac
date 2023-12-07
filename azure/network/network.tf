@@ -18,7 +18,7 @@ resource "azurerm_subnet" "private_subnet" {
 }
 
 resource "azurerm_subnet" "public_subnet" {
-  name                 = "${var.customer}-${var.project}-${var.env}-public"
+  name                 = "AzureBastionSubnet"
   virtual_network_name = azurerm_virtual_network.virtual_network.name
   resource_group_name  = var.resource_group_name
   address_prefixes     = [var.public_subnet_cidr]

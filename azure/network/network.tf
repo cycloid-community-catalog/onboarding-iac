@@ -15,12 +15,6 @@ resource "azurerm_subnet" "private_subnet" {
   virtual_network_name = azurerm_virtual_network.virtual_network.name
   resource_group_name  = var.resource_group_name
   address_prefixes     = [var.private_subnet_cidr]
-
-  tags = merge(local.merged_tags, {
-    Name = "${var.customer}-${var.project}-${var.env}"
-    role = "subnet"
-    Tier = "Private"
-  })
 }
 
 resource "azurerm_subnet" "public_subnet" {
@@ -28,10 +22,4 @@ resource "azurerm_subnet" "public_subnet" {
   virtual_network_name = azurerm_virtual_network.virtual_network.name
   resource_group_name  = var.resource_group_name
   address_prefixes     = [var.public_subnet_cidr]
-
-  tags = merge(local.merged_tags, {
-    Name = "${var.customer}-${var.project}-${var.env}"
-    role = "subnet"
-    Tier = "Public"
-  })
 }

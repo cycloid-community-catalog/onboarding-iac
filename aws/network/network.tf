@@ -69,7 +69,7 @@ resource "aws_route_table_association" "public_route_table_association" {
 }
 
 # Allocate an IP address for our NAT gateway
-resource "aws_eip" "nat_gateway" {
+resource "aws_eip" "eip_nat_gateway" {
   domain   = "vpc"
 
   tags = merge(local.merged_tags, {
@@ -80,7 +80,7 @@ resource "aws_eip" "nat_gateway" {
 
 # Create a NAT gateway and allocate our EIP
 resource "aws_nat_gateway" "nat_gateway" {
-  allocation_id = aws_eip.nat_gateway.id
+  allocation_id = aws_eip.eip_nat_gateway.id
   subnet_id = aws_subnet.public_subnet.id
 
   tags = merge(local.merged_tags, {

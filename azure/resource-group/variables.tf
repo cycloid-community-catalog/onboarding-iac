@@ -6,7 +6,7 @@ variable "project" {}
 variable "name" {
   type        = string
   description = "The name of the resource group to create"
-  default     = "${var.customer}-${var.project}-${var.env}"
+  default     = "cycloid"
 }
 
 variable "azure_location" {

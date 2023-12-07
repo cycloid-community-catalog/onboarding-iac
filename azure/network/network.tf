@@ -10,7 +10,7 @@ resource "azurerm_virtual_network" "virtual_network" {
   })
 }
 
-resource "azurerm_subnet" "private" {
+resource "azurerm_subnet" "private_subnet" {
   name                 = "${var.customer}-${var.project}-${var.env}-private"
   virtual_network_name = azurerm_virtual_network.virtual_network.name
   resource_group_name  = var.resource_group_name
@@ -23,7 +23,7 @@ resource "azurerm_subnet" "private" {
   })
 }
 
-resource "azurerm_subnet" "public" {
+resource "azurerm_subnet" "public_subnet" {
   name                 = "${var.customer}-${var.project}-${var.env}-public"
   virtual_network_name = azurerm_virtual_network.virtual_network.name
   resource_group_name  = var.resource_group_name

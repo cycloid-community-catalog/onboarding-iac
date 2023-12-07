@@ -13,7 +13,7 @@ resource "azurerm_bastion_host" "example" {
 
   ip_configuration {
     name                 = "configuration"
-    subnet_id            = azurerm_subnet.public.id
+    subnet_id            = azurerm_subnet.public_subnet.id
     public_ip_address_id = azurerm_public_ip.public_ip.id
   }
 }

@@ -6,7 +6,7 @@ resource "azurerm_public_ip" "public_ip" {
   sku                 = "Standard"
 }
 
-resource "azurerm_bastion_host" "example" {
+resource "azurerm_bastion_host" "bastion_host" {
   name                = "${var.customer}-${var.project}-${var.env}"
   location            = var.azure_location
   resource_group_name = var.resource_group_name

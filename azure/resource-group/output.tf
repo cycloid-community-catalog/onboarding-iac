@@ -1,5 +1,5 @@
 output "id" {
-  value = data.azurerm_resource_group.resource_group.id
+  value = azurerm_resource_group.resource_group.id
 }
 
 output "name" {

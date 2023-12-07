@@ -3,10 +3,16 @@ variable "customer" {}
 variable "env" {}
 variable "project" {}
 
-variable "subnet_cidr" {
+variable "public_subnet_cidr" {
   type        = string
-  description = "The CIDR for the Subnet."
+  description = "The CIDR for the Public Subnet."
   default     = "10.0.0.0/24"
+}
+
+variable "private_subnet_cidr" {
+  type        = string
+  description = "The CIDR for the Private Subnet."
+  default     = "10.0.1.0/24"
 }
 
 # Tags

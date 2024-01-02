@@ -31,7 +31,8 @@ resource "google_compute_firewall" "allow-http" {
     ports    = ["80"]
   }
 
-  target_tags = ["http"] 
+  target_tags = ["http"]
+  source_ranges = ["0.0.0.0/0"]
 }
 
 resource "google_compute_firewall" "allow-https" {
@@ -43,7 +44,8 @@ resource "google_compute_firewall" "allow-https" {
     ports    = ["443"]
   }
 
-  target_tags = ["https"] 
+  target_tags = ["https"]
+  source_ranges = ["0.0.0.0/0"]
 }
 
 resource "google_compute_firewall" "allow-bastion" {
@@ -56,4 +58,5 @@ resource "google_compute_firewall" "allow-bastion" {
   }
 
   target_tags = ["ssh"]
+  source_ranges = ["0.0.0.0/0"]
 }

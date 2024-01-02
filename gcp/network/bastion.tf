@@ -1,4 +1,4 @@
-module “iap_bastion” {
+module "iap_bastion" {
   source = “terraform-google-modules/bastion-host/google”
   version = “2.9.0”
 

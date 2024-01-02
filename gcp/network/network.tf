@@ -5,7 +5,7 @@ resource "google_compute_network" "vpc" {
 }
 
 resource "google_compute_subnetwork" "compute_public_subnetwork" {
-  name                     = "${var.customer}-${var.project}-${var.env}-private"
+  name                     = "${var.customer}-${var.project}-${var.env}-public"
   ip_cidr_range            = var.public_subnet_cidr
   network                  = google_compute_network.vpc.id
   private_ip_google_access = true

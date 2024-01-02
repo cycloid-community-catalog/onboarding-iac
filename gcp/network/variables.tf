@@ -3,6 +3,11 @@ variable "customer" {}
 variable "env" {}
 variable "project" {}
 
+variable "gcp_project" {
+  type        = string
+  description = "The GCP project name."
+}
+
 variable "public_subnet_cidr" {
   type        = string
   description = "The CIDR for the Public Subnet."

@@ -8,6 +8,10 @@ resource "azurerm_virtual_network" "virtual_network" {
     Name = "${var.customer}-${var.project}-${var.env}"
     role = "virtual_network"
   })
+
+  depends_on = [
+    azurerm_resource_group.resource_group
+  ]
 }
 
 resource "azurerm_subnet" "private_subnet" {

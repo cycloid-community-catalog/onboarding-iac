@@ -5,8 +5,8 @@ variable "project" {}
 
 variable "resource_group_name" {
   type        = string
-  description = "The name of the existing resource group where the resources will be deployed."
-  default     = ""
+  description = "The name of the resource group to create"
+  default     = "cycloid"
 }
 
 variable "azure_location" {

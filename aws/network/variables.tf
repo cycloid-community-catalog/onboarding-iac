@@ -24,6 +24,12 @@ variable "vpc_private_subnet" {
   default     = "10.0.1.0/24"
 }
 
+variable "nat_gateway" {
+  type        = bool
+  description = "Whether to deploy a NAT gateway or not."
+  default     = false
+}
+
 # Tags
 variable "extra_tags" {
   default = {}

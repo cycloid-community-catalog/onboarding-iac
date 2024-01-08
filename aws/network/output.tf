@@ -7,5 +7,5 @@ output "private_subnet_id" {
 }
 
 output "nat_gateway_ip" {
-  value = aws_eip.nat_gateway.public_ip
+  value = one(aws_eip.nat_gateway[*].public_ip)
 }

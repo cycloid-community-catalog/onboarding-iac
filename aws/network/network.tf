@@ -71,6 +71,7 @@ resource "aws_route_table_association" "public_route_table_association" {
 # Allocate an IP address for our NAT gateway
 resource "aws_eip" "eip_nat_gateway" {
   count    = var.nat_gateway ? 1 : 0
+  
   domain   = "vpc"
 
   tags = merge(local.merged_tags, {
